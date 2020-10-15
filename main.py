@@ -14,12 +14,13 @@ def write_logs() -> None:
         time.sleep(2)
 
 
-processes = [Process(target=write_logs) for _ in range(4)]
-proc_identifier = 0
-for process in processes:
-    proc_identifier += 1
-    process.name = f'Logging Process #{proc_identifier}'
-    process.start()
-    # Prevent race condition where processes try and listen on the same port
-    time.sleep(0.5)
-write_logs()
+if __name__ == "__main__":
+    processes = [Process(target=write_logs) for _ in range(4)]
+    proc_identifier = 0
+    for process in processes:
+        proc_identifier += 1
+        process.name = f'Logging Process #{proc_identifier}'
+        process.start()
+        # Prevent race condition where processes try and listen on the same port
+        time.sleep(0.5)
+    write_logs()
