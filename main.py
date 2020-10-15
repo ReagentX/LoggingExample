@@ -1,15 +1,17 @@
-import time 
-from multiprocessing import Process 
-
-from lib.logger import LOGGER
+import time
+from multiprocessing import Process
 
 
-def write_logs() -> None: 
+def write_logs() -> None:
+    # We can import the logger above and pickle the single instance across the processes
+    #   but by importing it here each thread creates its own instance of the logger.
+    # This is analogous to starting an instance of an app in each process.
+    from lib.logger import LOGGER
     while True:
-        LOGGER.error('Oops, something weird happened.')
-        LOGGER.info('Hey, something happened.')
-        LOGGER.debug('Got http code 200.')
-        time.sleep(1)
+        LOGGER.error('Something weird happened.')
+        LOGGER.info('A normal thing happened.')
+        LOGGER.debug('Got HTTP response 200.')
+        time.sleep(2)
 
 
 processes = [Process(target=write_logs) for _ in range(4)]
@@ -19,5 +21,5 @@ for process in processes:
     process.name = f'Logging Process #{proc_identifier}'
     process.start()
     # Prevent race condition where processes try and listen on the same port
-    time.sleep(1)
+    time.sleep(0.5)
 write_logs()
