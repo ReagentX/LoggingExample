@@ -17,7 +17,7 @@ def build_logger() -> logging.Logger:
     logging.ColorFormatter = ColorFormatter  # type: ignore
 
     # Read initial config file if we are in a deployed environment
-    if os.environ.get('ENV') not in {'dev', 'test', 'prod'}:
+    if os.environ.get('ENV') in {'dev', 'test', 'prod'}:
         logging.config.fileConfig('logger_config/info.conf')
         # Create and start listener on an open port
         port = 9001
