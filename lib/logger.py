@@ -11,13 +11,13 @@ def build_logger() -> logging.Logger:
     2019-10-28 14:32:57,843 - chargemaster.views - INFO - Received request to GetChargemasterData
 
     To use an instance of the logger, import with
-        from repricing_modules.helpers.logger import LOGGER
+        from lib.logger import LOGGER
     """
     # Set the color prop so we can access it from the config
     logging.ColorFormatter = ColorFormatter  # type: ignore
 
     # Read initial config file if we are in a deployed environment
-    if os.environ.get('ENV') in {'dev', 'test', 'prod'}:
+    if os.environ.get('ENV') not in {'dev', 'test', 'prod'}:
         logging.config.fileConfig('logger_config/info.conf')
         # Create and start listener on an open port
         port = 9001
