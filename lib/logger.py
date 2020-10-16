@@ -9,7 +9,7 @@ from .color_formatter import ColorFormatter
 def build_logger() -> logging.Logger:
     """
     Create a logger instance we can import to anywhere, logs in format:
-    2019-10-28 14:32:57,843 - chargemaster.views - INFO - Received request to GetChargemasterData
+    2019-10-28 14:32:57,843 - module.method - INFO - Log message
 
     To use an instance of the logger, import with
         from lib.logger import LOGGER
