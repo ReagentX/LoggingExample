@@ -1,7 +1,8 @@
-import os
 import logging
 import logging.config
+import os
 import socket
+
 from .color_formatter import ColorFormatter
 
 
