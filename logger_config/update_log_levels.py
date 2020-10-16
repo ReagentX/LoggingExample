@@ -7,7 +7,6 @@ First, `cd` to the folder
 Second, run the script to update the log level
 % python update_log_level.py debug.conf
 """
-
 import socket
 import struct
 import sys
