@@ -1,3 +1,6 @@
 # Python generated files
 *.pyc
 *.egg-info/*
+
+# Environment settings
+.vscode/*
